@@ -1,6 +1,11 @@
+const Sequelize = require("sequelize");
+const dotenv = require("dotenv");
 const { exec } = require('child_process');
 const LCD = require('lcdi2c');
 
+//database config
+const { database, user, pass, user, host } = process.env;
+//-------
 const ver = 1;
 const lcdPort = 0x27;
 const displayLength = 16;
@@ -30,3 +35,18 @@ setInterval(() => {
         });
 	
   }, repeatTime);
+
+
+const sequelize = new Sequelize(database, user, pass, {
+    host: host,
+    dialect: "mysql",
+    define: {
+      timestamps: false,
+    },
+  });
+
+sequelize.authenticate().then(() => {
+  console.log('Connection established successfully.');
+}).catch(err => {
+  console.error('Unable to connect to the database:', err);
+});
