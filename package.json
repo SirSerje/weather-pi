@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node script.js",
+    "start": "node -r esm script.js",
     "pmstart": "pm2 start script.js --name pi",
     "pmstop": "pm2 stop pi",
     "pmmonit": "pm2 monit",
     "pmdelete": "pm2 delete pi",
-    "pmlogs": "pm2 logs --lines 30"
+    "pmlogs": "pm2 logs --lines 30",
+    "pmrestart": "pm2 restart pi"
   },
   "keywords": [],
   "author": "",
